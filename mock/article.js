@@ -11,17 +11,18 @@ for (let i = 0; i < count; i++) {
     id: '@increment',
     timestamp: +Mock.Random.date('T'),
     author: '@first',
-    reviewer: '@first',
+    doctor: '@first',
     title: '@title(5, 10)',
     content_short: 'mock data',
     content: baseContent,
     forecast: '@float(0, 100, 2, 2)',
-    importance: '@integer(1, 3)',
-    'type|1': ['CN', 'US', 'JP', 'EU'],
-    'status|1': ['published', 'draft'],
+    // importance: '@integer(1, 3)',
+    'type|1': ['胸外科', '骨科', '神经内科'],
+    'status|1': ['running', 'complete', 'refund'],
+    'register_way|1': ['窗口挂号', '电话挂号', '预约挂号', '自动挂号'],
     display_time: '@datetime',
     comment_disabled: true,
-    pageviews: '@integer(300, 5000)',
+    'pageviews|1': [20, 25, 50],
     image_uri,
     platforms: ['a-platform']
   }))
@@ -32,12 +33,12 @@ export default [
     url: '/vue-element-admin/article/list',
     type: 'get',
     response: config => {
-      const { importance, type, title, page = 1, limit = 20, sort } = config.query
+      const { importance, type, author, page = 1, limit = 20, sort } = config.query
 
       let mockList = List.filter(item => {
         if (importance && item.importance !== +importance) return false
         if (type && item.type !== type) return false
-        if (title && item.title.indexOf(title) < 0) return false
+        if (author && item.author.indexOf(author) < 0) return false
         return true
       })
 

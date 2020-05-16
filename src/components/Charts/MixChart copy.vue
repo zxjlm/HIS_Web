@@ -90,7 +90,7 @@ export default {
           textStyle: {
             color: '#90979c'
           },
-          data: ['上午', '下午', 'average']
+          data: ['female', 'male', 'average']
         },
         calculable: true,
         xAxis: [{
@@ -162,7 +162,7 @@ export default {
           end: 35
         }],
         series: [{
-          name: '上午',
+          name: 'female',
           type: 'bar',
           stack: 'total',
           barMaxWidth: 35,
@@ -199,7 +199,7 @@ export default {
         },
 
         {
-          name: '下午',
+          name: 'male',
           type: 'bar',
           stack: 'total',
           itemStyle: {
@@ -230,7 +230,7 @@ export default {
             220
           ]
         }, {
-          name: '平均',
+          name: 'average',
           type: 'line',
           stack: 'total',
           symbolSize: 10,
