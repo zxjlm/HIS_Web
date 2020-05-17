@@ -54,7 +54,7 @@ export default {
       this.chart.setOption({
         backgroundColor: '#344b58',
         title: {
-          text: 'statistics',
+          text: '挂号数据统计',
           x: '20',
           top: '20',
           textStyle: {

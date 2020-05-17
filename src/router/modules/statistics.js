@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-15 15:52:32
- * @LastEditTime: 2020-05-15 16:03:57
+ * @LastEditTime: 2020-05-17 09:39:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/router/modules/statistics.js
@@ -25,9 +25,14 @@ const statisticsRouter = {
       meta: { title: '挂号数据统计' }
     }, {
       path: 'menu2',
-      component: () => import('@/views/statistics/register_number/index'), // Parent router-view
+      component: () => import('@/views/statistics/dept/index'), // Parent router-view
       name: 'Menu2',
       meta: { title: '科室数据统计' }
+    }, {
+      path: 'menu3',
+      component: () => import('@/views/statistics/staff_workload/index'), // Parent router-view
+      name: 'Menu3',
+      meta: { title: '工作量统计' }
     }
   ]
 }

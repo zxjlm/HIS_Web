@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-14 19:46:56
- * @LastEditTime: 2020-05-16 17:13:24
+ * @LastEditTime: 2020-05-17 10:34:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/query/index.vue
@@ -82,7 +82,7 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="挂号日期" width="150px" align="center">
+      <el-table-column label="注册日期" width="150px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
@@ -98,24 +98,19 @@
           <span>{{ row.author }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="科室" width="110px" align="center">
+      <el-table-column label="性别" width="110px" align="center">
         <template slot-scope="{row}">
-          <el-tag :type="row.type|typeFilter">{{ row.type }}</el-tag>
+          <span>{{ row.sex }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="实际收费" align="center" width="95">
+      <el-table-column label="就诊次数" align="center" width="95">
         <template slot-scope="{row}">
-          <span
-            v-if="row.pageviews"
-            class="link-type"
-            @click="handleFetchPv(row.pageviews)"
-          >{{ row.pageviews }}</span>
-          <span v-else>0</span>
+          <span>{{ row.pageviews }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="状态" class-name="status-col" width="100">
+      <el-table-column label="总花费" class-name="status-col" width="100">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">{{ row.status }}</el-tag>
+          <span>{{ row.use_money }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
@@ -169,16 +164,16 @@
         <el-form-item label="患者姓名" prop="name">
           <el-input v-model="temp.author" disabled />
         </el-form-item>
-        <el-form-item label="科室" prop="kehsi">
-          <el-input v-model="temp.type" disabled />
+        <el-form-item label="性别" prop="kehsi">
+          <el-input v-model="temp.sex" disabled />
         </el-form-item>
-        <el-form-item label="挂号方式" prop="register_way">
-          <el-input v-model="temp.register_way" disabled />
+        <el-form-item label="家庭住址" prop="register_way">
+          <el-input v-model="tmp.address" disabled />
         </el-form-item>
-        <el-form-item label="医生姓名" prop="doctor">
-          <el-input v-model="temp.doctor" disabled />
+        <el-form-item label="联系电话" prop="doctor">
+          <el-input v-model="tmp.phone" disabled />
         </el-form-item>
-        <el-form-item label="实际收费" prop="charge">
+        <el-form-item label="就诊次数" prop="charge">
           <el-input v-model="temp.pageviews" disabled />
         </el-form-item>
         <!-- <el-form-item label="评级">
@@ -189,9 +184,6 @@
             style="margin-top:8px;"
         />-->
         <!-- </el-form-item> -->
-        <el-form-item label="状态" prop="charge">
-          <el-tag :type="temp.status | statusFilter">{{ temp.status }}</el-tag>
-        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取消</el-button>
@@ -217,35 +209,10 @@ import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
-const calendarTypeOptions = [
-  { key: '胸外科', display_name: '胸外科' },
-  { key: '骨科', display_name: '骨科' },
-  { key: '神经内科', display_name: '神经内科' }
-]
-
-// arr to obj, such as { CN : "China", US : "USA" }
-const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
-  acc[cur.key] = cur.display_name
-  return acc
-}, {})
-
 export default {
   name: 'ComplexTable',
   components: { Pagination },
   directives: { waves },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        complete: 'success',
-        running: 'info',
-        refund: 'danger'
-      }
-      return statusMap[status]
-    },
-    typeFilter(type) {
-      return calendarTypeKeyValue[type]
-    }
-  },
   data() {
     return {
       tableKey: 0,
@@ -257,24 +224,24 @@ export default {
         limit: 20,
         importance: undefined,
         title: undefined,
-        type: undefined,
+        sex: undefined,
         author: undefined,
         sort: '+id'
       },
-      importanceOptions: [1, 2, 3],
-      calendarTypeOptions,
       sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
-      statusOptions: ['complete', 'running', 'refund'],
-      registerWayOptions: ['窗口挂号', '电话挂号', '预约挂号', '自动挂号'],
       showReviewer: false,
       temp: {
         id: undefined,
-        importance: 1,
+        sex: '',
         remark: '',
         timestamp: new Date(),
         title: '',
         type: '',
-        status: 'running'
+        use_money: ''
+      },
+      tmp: {
+        address: '栖霞区',
+        phone: '189xxxx'
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -417,8 +384,8 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['日期', '医生', '诊别', '挂号方式', '医生姓名', '金额', '状态']
-        const filterVal = ['timestamp', 'author', 'type', 'register_way', 'doctor', 'pageviews', 'status']
+        const tHeader = ['日期', '患者姓名', '性别', '就诊次数', '总花费']
+        const filterVal = ['timestamp', 'author', 'sex', 'pageviews', 'use_money']
         const data = this.formatJson(filterVal)
         excel.export_json_to_excel({
           header: tHeader,

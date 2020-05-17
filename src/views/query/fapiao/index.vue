@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-16 16:07:20
- * @LastEditTime: 2020-05-16 17:20:46
+ * @LastEditTime: 2020-05-17 09:23:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/charge/paper/index.vue
@@ -27,11 +27,6 @@
         </el-table-column>
         <el-table-column label="金额" width="110px" align="center">
           <template slot-scope="scope">{{ scope.row.price }}</template>
-        </el-table-column>
-        <el-table-column label="状态" width="110px" align="center">
-          <template slot-scope="scope">
-            <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-          </template>
         </el-table-column>
         <el-table-column
           label="操作"
@@ -68,7 +63,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取消</el-button>
-          <el-button type="primary" @click="dialogFormVisible = false,updateData(temp.id )">确认退款</el-button>
+          <el-button type="primary" @click="dialogFormVisible = false,updateData()">打印</el-button>
         </div>
       </el-dialog>
     </div>
@@ -78,22 +73,11 @@
 <script>
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        completed: 'success',
-        running: 'info',
-        refund: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       card_no: '12315',
       dialogFormVisible: false,
       content_hidden: true,
-      statusOptions: ['completed', 'running', 'refund'],
       temp: {
         date: '',
         price: ''
@@ -102,49 +86,41 @@ export default {
         code: '1231231',
         type: '药品',
         date: '2020年05月16日16:14:50',
-        status: 'running',
         price: '220.00'
       }, {
         code: '1231232',
         type: '检查',
         date: '2020年05月16日16:14:50',
-        status: 'completed',
         price: '312.00'
       }, {
         code: '1231233',
         type: '药品',
         date: '2020年05月16日16:14:50',
-        status: 'running',
         price: '331.00'
       }, {
         code: '1231234',
         type: '药品',
         date: '2020年05月16日16:14:50',
-        status: 'completed',
         price: '231.00'
       }, {
         code: '1231235',
         type: '检查',
         date: '2020年05月16日16:14:50',
-        status: 'running',
         price: '312.00'
       }, {
         code: '1231236',
         type: '药品',
         date: '2020年05月16日16:14:50',
-        status: 'running',
         price: '220.00'
       }, {
         code: '1231237',
         type: '检查',
         date: '2020年05月16日16:14:50',
-        status: 'completed',
         price: '65.00'
       }, {
         code: '1231238',
         type: '检查',
         date: '2020年05月16日16:14:50',
-        status: 'running',
         price: '554.00'
       }]
     }
@@ -154,19 +130,10 @@ export default {
       console.log(row1)
       this.temp = Object.assign({}, row1) // copy obj
       this.dialogStatus = 'update'
-      if (row1.status === 'completed') {
-        this.$notify({
-          title: 'Error',
-          message: '已完成,不可退款',
-          type: 'error',
-          duration: 2000
-        })
-      } else {
-        this.dialogFormVisible = true
-        this.$nextTick(() => {
-          this.$refs['dataForm'].clearValidate()
-        })
-      }
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
     },
     read_info() {
       this.content_hidden = false
@@ -178,17 +145,11 @@ export default {
       })
     },
     updateData() {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          this.row[0].status = 'refund'
-          this.dialogFormVisible = false
-          this.$notify({
-            title: 'Success',
-            message: '退款完成',
-            type: 'success',
-            duration: 2000
-          })
-        }
+      this.$notify({
+        title: 'Success',
+        message: '开始打印',
+        type: 'success',
+        duration: 2000
       })
     }
   }
