@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-14 19:46:56
- * @LastEditTime: 2020-05-16 17:13:24
+ * @LastEditTime: 2020-05-18 13:51:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/query/index.vue
@@ -18,7 +18,7 @@
       />
       <el-select
         v-model="listQuery.type"
-        placeholder="Type"
+        placeholder="科室类型"
         clearable
         class="filter-item"
         style="width: 130px"
@@ -49,7 +49,7 @@
         type="primary"
         icon="el-icon-search"
         @click="handleFilter"
-      >Search</el-button>
+      >按条件搜索</el-button>
       <el-button
         v-waves
         :loading="downloadLoading"
@@ -57,7 +57,7 @@
         type="primary"
         icon="el-icon-download"
         @click="handleDownload"
-      >Export</el-button>
+      >导出为excel</el-button>
     </div>
 
     <el-table
@@ -122,15 +122,15 @@
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">查看</el-button>
           <!-- <el-button
-            v-if="row.status=='running'"
+            v-if="row.status=='进行中'"
             size="mini"
             type="success"
-            @click="handleModifyStatus(row,'running')"
+            @click="handleModifyStatus(row,'进行中')"
           >进行中</el-button>-->
           <!-- <el-button
-            v-if="row.status=='running'"
+            v-if="row.status=='进行中'"
             size="mini"
-            @click="handleModifyStatus(row,'refund')"
+            @click="handleModifyStatus(row,'已退款')"
           >退款</el-button>-->
         </template>
       </el-table-column>
@@ -195,7 +195,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取消</el-button>
-        <!-- <el-button v-if="temp.status === 'running'" type="primary" @click="updateData()">退款</el-button> -->
+        <!-- <el-button v-if="temp.status === '进行中'" type="primary" @click="updateData()">退款</el-button> -->
       </div>
     </el-dialog>
 
@@ -236,9 +236,9 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        complete: 'success',
-        running: 'info',
-        refund: 'danger'
+        '已完成': 'success',
+        '进行中': 'info',
+        '已退款': 'danger'
       }
       return statusMap[status]
     },
@@ -263,8 +263,8 @@ export default {
       },
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
-      sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
-      statusOptions: ['complete', 'running', 'refund'],
+      sortOptions: [{ label: 'ID 升序', key: '+id' }, { label: 'ID 降序', key: '-id' }],
+      statusOptions: ['已完成', '进行中', '已退款'],
       registerWayOptions: ['窗口挂号', '电话挂号', '预约挂号', '自动挂号'],
       showReviewer: false,
       temp: {
@@ -274,7 +274,7 @@ export default {
         timestamp: new Date(),
         title: '',
         type: '',
-        status: 'running'
+        status: '进行中'
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -340,7 +340,7 @@ export default {
         remark: '',
         timestamp: new Date(),
         title: '',
-        status: 'running',
+        status: '进行中',
         type: ''
       }
     },
@@ -382,7 +382,7 @@ export default {
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          this.temp.status = 'refund'
+          this.temp.status = '已退款'
           const tempData = Object.assign({}, this.temp)
           tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
           updateArticle(tempData).then(() => {
@@ -441,7 +441,7 @@ export default {
       const sort = this.listQuery.sort
       return sort === `+${key}` ? 'ascending' : 'descending'
     },
-    refundHandler(row, status) {
+    已退款Handler(row, status) {
       this.dialogFormVisible = false
       this.handleModifyStatus(row, status)
     }

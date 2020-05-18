@@ -84,7 +84,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: '总控制台', icon: 'dashboard', affix: true }
+        meta: { title: '工作站', icon: 'dashboard', affix: true }
       }
     ]
   },
@@ -96,7 +96,7 @@ export const constantRoutes = [
   //       path: 'index',
   //       component: () => import('@/views/form/index'),
   //       name: 'form',
-  //       meta: { title: '挂号', icon: 'documentation', affix: true }
+  //       meta: { title: 'ćĺˇ', icon: 'documentation', affix: true }
   //     }
   //   ]
   // },
@@ -138,12 +138,12 @@ export const asyncRoutes = [
   // componentsRouter,
   // chartsRouter,
   nestedRouter,
+  chargeRouter,
+  refundRouter,
+  feeRouter,
   // tableRouter,
   infoRouter,
   statisticsRouter,
-  feeRouter,
-  chargeRouter,
-  refundRouter,
 
   // {
   //   path: '/tab',

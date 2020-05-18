@@ -1,5 +1,13 @@
+/*
+ * @Author: your name
+ * @Date: 2020-05-14 07:46:07
+ * @LastEditTime: 2020-05-18 09:53:32
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /vue-element-admin/src/settings.js
+ */
 module.exports = {
-  title: 'Vue Element Admin',
+  title: '苏北人民医院',
 
   /**
    * @type {boolean} true | false

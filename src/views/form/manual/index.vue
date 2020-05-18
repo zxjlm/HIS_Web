@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-14 14:59:41
- * @LastEditTime: 2020-05-16 15:15:59
+ * @LastEditTime: 2020-05-18 13:37:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/index.vue
@@ -40,12 +40,21 @@
     </div>
     <el-divider content-position="left">挂号登记</el-divider>
     <div id="content" class="filter-container" :hidden="is_content_hidden">
+      <el-form :inline="true" :model="form_dig" label-width="80px">
+        <el-form-item label="姓名: ">{{ form_dig.patient_name }}</el-form-item>
+        <el-form-item label="年龄: ">{{ form_dig.patient_age }}</el-form-item>
+        <el-form-item label="现居住: ">{{ form_dig.patient_addr }}</el-form-item>
+        <el-form-item label="联系方式: ">{{ form_dig.patient_phone }}</el-form-item>
+        <el-form-item label="职业: ">{{ form_dig.patient_job }}</el-form-item>
+        <el-form-item label="民族: ">{{ form_dig.patient_nation }}</el-form-item>
+        <el-form-item label="婚姻状况: ">{{ form_dig.patient_marry }}</el-form-item>
+      </el-form>
       <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="姓名:">{{ form_dig.patient_name }}</el-form-item>
         <el-form-item label="医保类型">
           <el-radio-group v-model="form.yibao">
             <el-radio label="城镇医保" />
             <el-radio label="农村医保" />
+            <el-radio label="职工医保" />
             <el-radio label="自费" />
           </el-radio-group>
         </el-form-item>
@@ -58,6 +67,8 @@
         </el-form-item>
         <el-form-item label="选择医生">
           <el-cascader
+            size="medium"
+            placeholder="请选择"
             :v-model="value"
             :options="options"
             :props="{ expandTrigger: 'hover' }"
@@ -113,7 +124,7 @@ export default {
         type: [],
         yibao: '自费',
         feibie: '普通',
-        price: ''
+        price: '待计算'
       },
       value: [],
       options: [{

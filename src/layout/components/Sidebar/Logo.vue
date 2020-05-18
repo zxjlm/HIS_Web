@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-14 07:46:07
+ * @LastEditTime: 2020-05-18 09:53:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /vue-element-admin/src/layout/components/Sidebar/Logo.vue
+-->
 <template>
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
@@ -24,7 +32,7 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Element Admin',
+      title: '苏北人民医院',
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }

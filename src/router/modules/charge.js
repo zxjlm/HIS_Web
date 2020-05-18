@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-16 09:04:01
- * @LastEditTime: 2020-05-17 09:23:45
+ * @LastEditTime: 2020-05-18 09:46:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/router/modules/charge.js
@@ -15,7 +15,7 @@ const chargeRouter = {
   name: 'charge',
   meta: {
     title: '收费',
-    icon: 'chart'
+    icon: 'shopping'
   },
   children: [
     {

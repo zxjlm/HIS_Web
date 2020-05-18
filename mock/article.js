@@ -20,7 +20,7 @@ for (let i = 0; i < count; i++) {
     forecast: '@float(0, 100, 2, 2)',
     // importance: '@integer(1, 3)',
     'type|1': ['胸外科', '骨科', '神经内科'],
-    'status|1': ['running', 'complete', 'refund'],
+    'status|1': ['进行中', '已完成', '已退款'],
     'register_way|1': ['窗口挂号', '电话挂号', '预约挂号', '自动挂号'],
     display_time: '@datetime',
     comment_disabled: true,

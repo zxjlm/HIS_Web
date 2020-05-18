@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-14 19:46:56
- * @LastEditTime: 2020-05-17 10:34:06
+ * @LastEditTime: 2020-05-18 13:53:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/query/index.vue
@@ -16,7 +16,7 @@
         class="filter-item"
         @keyup.enter.native="handleFilter"
       />
-      <el-select
+      <!-- <el-select
         v-model="listQuery.type"
         placeholder="Type"
         clearable
@@ -29,7 +29,7 @@
           :label="item.display_name+'('+item.key+')'"
           :value="item.key"
         />
-      </el-select>
+      </el-select> -->
       <el-select
         v-model="listQuery.sort"
         style="width: 140px"
@@ -49,7 +49,7 @@
         type="primary"
         icon="el-icon-search"
         @click="handleFilter"
-      >Search</el-button>
+      >搜索</el-button>
       <el-button
         v-waves
         :loading="downloadLoading"
@@ -57,7 +57,7 @@
         type="primary"
         icon="el-icon-download"
         @click="handleDownload"
-      >Export</el-button>
+      >导出</el-button>
     </div>
 
     <el-table
@@ -108,7 +108,7 @@
           <span>{{ row.pageviews }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="总花费" class-name="status-col" width="100">
+      <el-table-column label="总花费(元)" class-name="status-col" width="100">
         <template slot-scope="{row}">
           <span>{{ row.use_money }}</span>
         </template>
@@ -228,7 +228,7 @@ export default {
         author: undefined,
         sort: '+id'
       },
-      sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
+      sortOptions: [{ label: 'ID 升序', key: '+id' }, { label: 'ID 降序', key: '-id' }],
       showReviewer: false,
       temp: {
         id: undefined,

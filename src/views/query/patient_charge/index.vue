@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-16 16:07:20
- * @LastEditTime: 2020-05-17 09:25:16
+ * @LastEditTime: 2020-05-18 13:50:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/charge/paper/index.vue
@@ -52,7 +52,7 @@
         type="primary"
         icon="el-icon-download"
         @click="handleDownload"
-      >Export</el-button>
+      >导出</el-button>
 
       <el-dialog :visible.sync="dialogFormVisible">
         <el-form
@@ -87,9 +87,9 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        completed: 'success',
-        running: 'info',
-        refund: 'danger'
+        已完成: 'success',
+        进行中: 'info',
+        已退款: 'danger'
       }
       return statusMap[status]
     }
@@ -100,7 +100,7 @@ export default {
       dialogFormVisible: false,
       content_hidden: true,
       downloadLoading: false,
-      statusOptions: ['completed', 'running', 'refund'],
+      statusOptions: ['已完成', '进行中', '已退款'],
       temp: {
         date: '',
         price: ''
@@ -109,49 +109,49 @@ export default {
         code: '1231231',
         type: '药品',
         date: '2020年05月16日16:14:50',
-        status: 'running',
+        status: '进行中',
         price: 221.00
       }, {
         code: '1231232',
         type: '检查',
         date: '2020年05月16日16:14:50',
-        status: 'completed',
+        status: '已完成',
         price: 312.00
       }, {
         code: '1231233',
         type: '药品',
         date: '2020年05月16日16:14:50',
-        status: 'running',
+        status: '进行中',
         price: 331.00
       }, {
         code: '1231234',
         type: '药品',
         date: '2020年05月16日16:14:50',
-        status: 'completed',
+        status: '已完成',
         price: 231.00
       }, {
         code: '1231235',
         type: '检查',
         date: '2020年05月16日16:14:50',
-        status: 'refund',
+        status: '已退款',
         price: 312.00
       }, {
         code: '1231236',
         type: '药品',
         date: '2020年05月16日16:14:50',
-        status: 'running',
+        status: '进行中',
         price: 220.00
       }, {
         code: '1231237',
         type: '检查',
         date: '2020年05月16日16:14:50',
-        status: 'completed',
+        status: '已完成',
         price: 65.00
       }, {
         code: '1231238',
         type: '检查',
         date: '2020年05月16日16:14:50',
-        status: 'refund',
+        status: '已退款',
         price: 554.00
       }]
     }
@@ -161,7 +161,7 @@ export default {
       console.log(row1)
       this.temp = Object.assign({}, row1) // copy obj
       this.dialogStatus = 'update'
-      if (row1.status === 'completed') {
+      if (row1.status === '已完成') {
         this.$notify({
           title: 'Error',
           message: '已完成,不可退款',
@@ -187,7 +187,7 @@ export default {
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          this.row[0].status = 'refund'
+          this.row[0].status = '已退款'
           this.dialogFormVisible = false
           this.$notify({
             title: 'Success',
@@ -203,13 +203,13 @@ export default {
       const sums = []
       let val = 0
       data.forEach((dt, index) => {
-        if (dt.status === 'completed') {
+        if (dt.status === '已完成') {
           val += Number(dt.price)
         }
       })
       columns.forEach((column, index) => {
         if (index === 0) {
-          sums[index] = '总价'
+          sums[index] = '总价(排除退款)'
           return
         }
         if (index === 3) {

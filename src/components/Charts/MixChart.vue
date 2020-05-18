@@ -52,13 +52,13 @@ export default {
         return data
       }())
       this.chart.setOption({
-        backgroundColor: '#344b58',
+        // backgroundColor: '#344b58',
         title: {
           text: '挂号数据统计',
           x: '20',
           top: '20',
           textStyle: {
-            color: '#fff',
+            // color: '#fff',
             fontSize: '22'
           },
           subtextStyle: {

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-16 15:46:20
- * @LastEditTime: 2020-05-16 16:42:01
+ * @LastEditTime: 2020-05-18 09:45:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/router/modules/refund.js
@@ -15,7 +15,7 @@ const refundRouter = {
   name: 'refund',
   meta: {
     title: '退款',
-    icon: 'el-icon-s-ticket'
+    icon: 'money'
   },
   children: [
     {

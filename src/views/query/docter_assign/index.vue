@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-15 10:12:43
- * @LastEditTime: 2020-05-16 15:25:40
+ * @LastEditTime: 2020-05-18 13:48:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/query/docter_assign/index.vue
@@ -40,7 +40,7 @@
     </el-form>
     <el-divider content-position="left">查询结果</el-divider>
     <div :hidden="is_hidden">
-      <el-table ref="tb" :data="tableData" :row-class-name="tableRowClassName" show-summary>
+      <el-table ref="tb" :data="tableData" :row-class-name="tableRowClassName" show-summary sum-text="合计">
         <el-table-column prop="sor" label="班次" width="180" />
         <el-table-column prop="name" label="姓名" width="180" />
         <el-table-column prop="type" label="号别" width="60" />

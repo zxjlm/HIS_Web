@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-15 08:56:45
- * @LastEditTime: 2020-05-16 15:19:35
+ * @LastEditTime: 2020-05-18 13:39:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/refund/index.vue
@@ -99,9 +99,9 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        complete: 'success',
-        running: 'info',
-        refund: 'danger'
+        '完成': 'success',
+        '进行中': 'info',
+        '已退款': 'danger'
       }
       return statusMap[status]
     }
@@ -119,7 +119,7 @@ export default {
         register_way: '窗口挂号',
         doctor: '李四',
         pageviews: '20',
-        status: 'running'
+        status: '进行中'
       }
     }
   },
@@ -131,7 +131,7 @@ export default {
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          this.temp.status = 'refund'
+          this.temp.status = '已退款'
           //   const tempData = Object.assign({}, this.temp)
           //   tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
           this.dialogTableVisible = false

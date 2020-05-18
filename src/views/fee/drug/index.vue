@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-15 16:11:55
- * @LastEditTime: 2020-05-16 15:29:04
+ * @LastEditTime: 2020-05-18 13:42:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/fee/register_number/index.vue
@@ -191,7 +191,7 @@ export default {
           this.dialogFormVisible = false
           this.$notify({
             title: 'Success',
-            message: 'Update Successfully',
+            message: '修改成功',
             type: 'success',
             duration: 2000
           })
