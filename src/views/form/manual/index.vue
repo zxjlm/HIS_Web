@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-14 14:59:41
- * @LastEditTime: 2020-05-18 13:37:30
+ * @LastEditTime: 2020-06-01 10:28:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/index.vue
@@ -39,17 +39,21 @@
       </el-dialog>
     </div>
     <el-divider content-position="left">挂号登记</el-divider>
-    <div id="content" class="filter-container" :hidden="is_content_hidden">
-      <el-form :inline="true" :model="form_dig" label-width="80px">
+    <div id="content" class="filter-container" :hidden="is_content_hidden" style="margin-left:40px;margin-top:30px">
+      <el-divider content-position="left">患者信息</el-divider>
+      <el-form :inline="true" :model="form_dig" label-width="100px" size="medium" style="width:70%">
         <el-form-item label="姓名: ">{{ form_dig.patient_name }}</el-form-item>
         <el-form-item label="年龄: ">{{ form_dig.patient_age }}</el-form-item>
+        <el-form-item label="就诊卡号: ">{{ form_dig.card_no }}</el-form-item>
+        <el-form-item label="证件号码: ">{{ form_dig.credit }}</el-form-item>
         <el-form-item label="现居住: ">{{ form_dig.patient_addr }}</el-form-item>
         <el-form-item label="联系方式: ">{{ form_dig.patient_phone }}</el-form-item>
         <el-form-item label="职业: ">{{ form_dig.patient_job }}</el-form-item>
         <el-form-item label="民族: ">{{ form_dig.patient_nation }}</el-form-item>
         <el-form-item label="婚姻状况: ">{{ form_dig.patient_marry }}</el-form-item>
       </el-form>
-      <el-form ref="form" :model="form" label-width="80px">
+      <el-divider content-position="left">挂号登记信息</el-divider>
+      <el-form ref="form" :model="form" label-width="140px">
         <el-form-item label="医保类型">
           <el-radio-group v-model="form.yibao">
             <el-radio label="城镇医保" />
@@ -65,7 +69,7 @@
             <el-radio label="普通" />
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="选择医生">
+        <el-form-item label="选择科室和医生">
           <el-cascader
             size="medium"
             placeholder="请选择"
@@ -104,10 +108,12 @@ export default {
       dialogTableVisible: false,
       card_no: 12315,
       form_dig: {
+        card_no: 12315,
         patient_name: '张三',
         patient_age: '23',
         patient_addr: '南京市栖霞区',
         patient_phone: '189xxxxxxxx',
+        credit: '320xxxxxxxxxxxxX',
         patient_job: '工人',
         patient_nation: '汉',
         patient_marry: '未婚',

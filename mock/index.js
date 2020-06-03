@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-05-14 07:46:07
+ * @LastEditTime: 2020-06-01 18:08:26
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /vue-element-admin/mock/index.js
+ */
 import Mock from 'mockjs'
 import { param2Obj } from '../src/utils'
 
@@ -5,12 +13,14 @@ import user from './user'
 import role from './role'
 import article from './article'
 import search from './remote-search'
+import fee from './fee'
 
 const mocks = [
   ...user,
   ...role,
   ...article,
-  ...search
+  ...search,
+  ...fee
 ]
 
 // for front mock

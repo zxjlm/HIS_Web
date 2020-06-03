@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-14 07:46:07
+ * @LastEditTime: 2020-06-01 09:36:59
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /vue-element-admin/src/views/dashboard/admin/components/LineChart.vue
+-->
 <template>
   <div :class="className" :style="{height:height,width:width}" />
 </template>
@@ -63,6 +71,9 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
+        title: {
+          text: '近七日趋势'
+        },
         xAxis: {
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
           boundaryGap: false,

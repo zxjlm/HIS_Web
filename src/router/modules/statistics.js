@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-15 15:52:32
- * @LastEditTime: 2020-05-17 09:39:30
+ * @LastEditTime: 2020-06-01 18:47:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/router/modules/statistics.js
@@ -33,7 +33,23 @@ const statisticsRouter = {
       component: () => import('@/views/statistics/staff_workload/index'), // Parent router-view
       name: 'Menu3',
       meta: { title: '工作量统计' }
+    }, {
+      path: 'menu4',
+      component: () => import('@/views/statistics/drug/index'), // Parent router-view
+      name: 'Menu4',
+      meta: { title: '药品统计' }
+    }, {
+      path: 'menu5',
+      component: () => import('@/views/statistics/fee/index'), // Parent router-view
+      name: 'Menu5',
+      meta: { title: '收费统计' }
     }
+    //   path: 'menu6',
+    //   component: () => import('@/views/statistics/patient/index'), // Parent router-view
+    //   name: 'Menu6',
+    //   meta: { title: '患者统计' }
+    // }
+
   ]
 }
 

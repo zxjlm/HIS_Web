@@ -1,22 +1,28 @@
 <!--
  * @Author: your name
- * @Date: 2020-05-15 16:11:55
- * @LastEditTime: 2020-06-01 11:02:39
+ * @Date: 2020-06-01 11:07:18
+ * @LastEditTime: 2020-06-01 14:54:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: /vue-element-admin/src/views/fee/register_number/index.vue
+ * @FilePath: /vue-element-admin/src/views/fee/inspection/index.vue
 -->
 <template>
   <div class="app-container">
     <el-table :data="row" fit highlight-current-row>
-      <el-table-column prop="id" label="id" align="center">
-        <template slot-scope="scope">{{ scope.row.id }}</template>
+      <el-table-column prop="id" label="编号" align="center">
+        <template slot-scope="scope">{{ scope.row.code }}</template>
       </el-table-column>
-      <el-table-column label="费别" align="center">
-        <template slot-scope="scope">{{ scope.row.type }}</template>
+      <el-table-column label="项目名" align="center">
+        <template slot-scope="scope">{{ scope.row.name }}</template>
       </el-table-column>
-      <el-table-column prop="charge" label="金额(元)" align="center">
-        <template slot-scope="scope">{{ scope.row.charge }}</template>
+      <el-table-column label="单价(元)" align="center">
+        <template slot-scope="scope">{{ scope.row.price }}</template>
+      </el-table-column>
+      <el-table-column label="单位" align="center">
+        <template slot-scope="scope">{{ scope.row.format }}</template>
+      </el-table-column>
+      <el-table-column label="所属科室" align="center">
+        <template slot-scope="scope">{{ scope.row.septid }}</template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -24,6 +30,13 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <pagination
+      v-show="total>0"
+      :total="total"
+      :page.sync="listQuery.page"
+      :limit.sync="listQuery.limit"
+    />
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form
@@ -33,14 +46,23 @@
         label-width="90px"
         style="width: 400px; margin-left:50px;"
       >
-        <el-form-item label="编号" prop="name">
+        <!-- <el-form-item label="编号" prop="name">
           <el-input v-model="temp.id" :disabled="true" />
+        </el-form-item>-->
+        <el-form-item label="药名" prop="kehsi">
+          <el-input v-model="temp.name" :disabled="true" />
         </el-form-item>
-        <el-form-item label="费别" prop="kehsi">
-          <el-input v-model="temp.type" :disabled="true" />
+        <el-form-item label="单价(元)" prop="register_way">
+          <el-input v-model="temp.price" />
         </el-form-item>
-        <el-form-item label="金额" prop="register_way">
-          <el-input v-model="temp.charge" />
+        <el-form-item label="生产厂家" prop="register_way">
+          <el-input v-model="temp.manufacture" :disabled="true" />
+        </el-form-item>
+        <el-form-item label="单位" prop="register_way">
+          <el-input v-model="temp.unit" :disabled="true" />
+        </el-form-item>
+        <el-form-item label="规格" prop="register_way">
+          <el-input v-model="temp.format" :disabled="true" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -62,32 +84,26 @@
 </template>
 
 <script>
+import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
 export default {
+  components: { Pagination },
   data() {
     return {
       tableKey: 0,
-      row: [{
-        id: 1,
-        type: '专家(副主任医师)',
-        charge: 22
-      }, {
-        id: 1,
-        type: '专家(主任医师)',
-        charge: 35
-      }, {
-        id: 2,
-        type: '普通',
-        charge: 12
-      }, {
-        id: 3,
-        type: '急诊',
-        charge: 30
-      }],
+      row: require('../../../../data/jianchaxiangmu.json'),
+      // row: [],
       list: null,
-      total: 0,
-      listLoading: true,
-      importanceOptions: [1, 2, 3],
+      total: 900,
+      listLoading: false,
+      listQuery: {
+        page: 45,
+        limit: 20,
+        id: undefined,
+        name: undefined,
+        price: undefined
+        // sort: '+id'
+      },
       sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
       showReviewer: false,
       temp: {
@@ -106,6 +122,7 @@ export default {
       downloadLoading: false
     }
   },
+
   methods: {
     handleFilter() {
       this.listQuery.page = 1
@@ -180,8 +197,23 @@ export default {
       })
       this.list.splice(index, 1)
     },
-    indexMethod(index) {
-      return index
+    handleSizeChange(pageSize) {
+      this.pageSize = pageSize
+      this.handleCurrentChange(this.currentPage1)
+    },
+    handleCurrentChange(currentPage) {
+      this.currentPage1 = currentPage
+      this.currentChangePage(this.rawList, currentPage)
+    },
+    currentChangePage(list, currentPage) {
+      let from = (currentPage - 1) * this.pageSize
+      const to = currentPage * this.pageSize
+      this.pageList = []
+      for (; from < to; from++) {
+        if (list[from]) {
+          this.pageList.push(list[from])
+        }
+      }
     }
   }
 }

@@ -7,9 +7,14 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            今日使用量
+            今日挂号人次
           </div>
           <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+          <div style="margin-top:10px">
+            <div class="card-panel-text-remark">
+              较昨日上涨 20%
+            </div>
+          </div>
         </div>
       </div>
     </el-col>
@@ -26,32 +31,42 @@
         </div>
       </div>
     </el-col>
-    <!-- <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('purchases')">
         <div class="card-panel-icon-wrapper icon-money">
           <svg-icon icon-class="money" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Purchases
+            今日门诊收入
           </div>
           <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
+          <div style="margin-top:10px">
+            <div class="card-panel-text-remark">
+              较昨日上涨 30%
+            </div>
+          </div>
         </div>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('shoppings')">
         <div class="card-panel-icon-wrapper icon-shopping">
-          <svg-icon icon-class="shopping" class-name="card-panel-icon" />
+          <svg-icon icon-class="people" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Shoppings
+            今日收入合计
           </div>
           <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+          <div style="margin-top:10px">
+            <div class="card-panel-text-remark">
+              较昨日上涨 10%
+            </div>
+          </div>
         </div>
       </div>
-    </el-col> -->
+    </el-col>
   </el-row>
 </template>
 
@@ -143,13 +158,21 @@ export default {
     .card-panel-description {
       float: right;
       font-weight: bold;
-      margin: 26px;
+      margin: 20px;
       margin-left: 0px;
+      margin-right: 26px;
 
       .card-panel-text {
         line-height: 18px;
         color: rgba(0, 0, 0, 0.45);
         font-size: 16px;
+        margin-bottom: 12px;
+      }
+
+      .card-panel-remark {
+        line-height: 18px;
+        color: rgba(0, 0, 0, 0.45);
+        font-size: 10px;
         margin-bottom: 12px;
       }
 

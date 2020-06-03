@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-15 10:12:43
- * @LastEditTime: 2020-05-18 13:48:36
+ * @LastEditTime: 2020-06-01 15:03:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/query/docter_assign/index.vue
@@ -41,12 +41,14 @@
     <el-divider content-position="left">查询结果</el-divider>
     <div :hidden="is_hidden">
       <el-table ref="tb" :data="tableData" :row-class-name="tableRowClassName" show-summary sum-text="合计">
-        <el-table-column prop="sor" label="班次" width="180" />
-        <el-table-column prop="name" label="姓名" width="180" />
-        <el-table-column prop="type" label="号别" width="60" />
-        <el-table-column prop="numbers_used" label="已完成号数" width="90" />
-        <el-table-column prop="numbers_rec" label="剩余号数" width="90" />
-        <el-table-column prop="status" label="状态" width="60" />
+        <el-table-column prop="sor" label="班次" />
+        <el-table-column prop="name" label="姓名" />
+        <el-table-column prop="docter_no" label="医生编号" />
+        <el-table-column prop="docter_rank" label="医生职称" />
+        <el-table-column prop="type" label="号别" />
+        <el-table-column prop="numbers_used" label="已完成号数" />
+        <el-table-column prop="numbers_rec" label="剩余号数" />
+        <el-table-column prop="status" label="状态" />
       </el-table>
     </div>
   </div>
@@ -108,17 +110,21 @@ export default {
       value2: '',
       tableData: [{
         // date: this.value2,
-        sor: '上午',
+        sor: '9:00~11:30',
         name: '李逍遥',
         type: '专家',
+        docter_no: '111',
+        docter_rank: '主任医师',
         // dept: this.value,
         numbers_used: 32,
         numbers_rec: 18,
         status: '正常'
       }, {
         // date: this.value2,
-        sor: '上午',
+        sor: '9:00~11:30',
         name: '王小虎',
+        docter_no: '211',
+        docter_rank: '主治医师',
         type: '普通',
         // dept: this.value,
         numbers_used: 0,
@@ -126,8 +132,10 @@ export default {
         status: '缺勤'
       }, {
         // date: this.value2,
-        sor: '上午',
+        sor: '9:00~11:30',
         name: '景天',
+        docter_no: '311',
+        docter_rank: '副主任医师',
         type: '专家',
         // dept: this.value,
         numbers_used: 32,
@@ -135,8 +143,10 @@ export default {
         status: '正常'
       }, {
         // date: this.value2,
-        sor: '下午',
+        sor: '14:00~17:00',
         name: '云天河',
+        docter_rank: '主治医师',
+        docter_no: '411',
         type: '普通',
         // dept: this.value,
         numbers_used: 40,
@@ -144,8 +154,10 @@ export default {
         status: '未开始'
       }, {
         // date: this.value2,
-        sor: '下午',
+        sor: '14:00~17:00',
         name: '柳梦璃',
+        docter_rank: '主任医师',
+        docter_no: '413',
         // dept: this.value,
         type: '专家',
         numbers_used: 40,
@@ -153,13 +165,15 @@ export default {
         status: '未开始'
       }, {
         // date: this.value2,
-        sor: '下午',
+        sor: '14:00~17:00',
         name: '韩菱纱',
+        docter_rank: '主治医师',
         type: '普通',
         // dept: this.value,
         numbers_used: 40,
         numbers_rec: 0,
-        status: '未开始'
+        status: '未开始',
+        docter_no: '412'
       }]
     }
   },

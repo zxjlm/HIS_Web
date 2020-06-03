@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-15 16:11:55
- * @LastEditTime: 2020-05-18 13:42:31
+ * @LastEditTime: 2020-06-01 11:12:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/fee/register_number/index.vue
@@ -9,25 +9,25 @@
 <template>
   <div class="app-container">
     <el-table :data="row" fit highlight-current-row>
-      <el-table-column prop="id" label="编号" width="130px" align="center">
+      <el-table-column prop="id" label="编号" align="center">
         <template slot-scope="scope">{{ scope.row.code }}</template>
       </el-table-column>
-      <el-table-column label="药名" width="110px" align="center">
+      <el-table-column label="药名" align="center">
         <template slot-scope="scope">{{ scope.row.name }}</template>
       </el-table-column>
-      <el-table-column label="单价(元)" width="110px" align="center">
+      <el-table-column label="单价(元)" align="center">
         <template slot-scope="scope">{{ scope.row.price }}</template>
       </el-table-column>
-      <el-table-column label="单位" width="110px" align="center">
+      <el-table-column label="单位" align="center">
         <template slot-scope="scope">{{ scope.row.unit }}</template>
       </el-table-column>
-      <el-table-column label="生产厂家" width="110px" align="center">
+      <el-table-column label="生产厂家" align="center">
         <template slot-scope="scope">{{ scope.row.manufacture }}</template>
       </el-table-column>
-      <el-table-column label="规格" width="110px" align="center">
+      <el-table-column label="规格" align="center">
         <template slot-scope="scope">{{ scope.row.format }}</template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">修改</el-button>
         </template>
@@ -87,7 +87,6 @@
 </template>
 
 <script>
-import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
 export default {
@@ -126,12 +125,6 @@ export default {
       downloadLoading: false
     }
   },
-  // mounted() {
-  //   this.axios.get('/data/drug.json').then(response => {
-  //     this.row = response.data
-  //     this.currentChangePage(this.row, 1)
-  //   })
-  // },
 
   methods: {
     handleFilter() {
@@ -206,29 +199,6 @@ export default {
         duration: 2000
       })
       this.list.splice(index, 1)
-    },
-    handleDownload() {
-      this.downloadLoading = true
-      import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['日期', '医生', '诊别', '挂号方式', '医生姓名', '金额', '状态']
-        const filterVal = ['timestamp', 'author', 'type', 'register_way', 'doctor', 'pageviews', 'status']
-        const data = this.formatJson(filterVal)
-        excel.export_json_to_excel({
-          header: tHeader,
-          data,
-          filename: 'table-list'
-        })
-        this.downloadLoading = false
-      })
-    },
-    formatJson(filterVal) {
-      return this.list.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
     },
     handleSizeChange(pageSize) {
       this.pageSize = pageSize

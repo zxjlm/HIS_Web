@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-15 16:09:31
- * @LastEditTime: 2020-05-16 09:08:18
+ * @LastEditTime: 2020-06-01 11:08:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/router/modules/fee.js
@@ -28,6 +28,11 @@ const feeRouter = {
       component: () => import('@/views/fee/drug/index'), // Parent router-view
       name: 'Menu2',
       meta: { title: '药品费用管理' }
+    }, {
+      path: 'menu3',
+      component: () => import('@/views/fee/inspection/index'), // Parent router-view
+      name: 'Menu3',
+      meta: { title: '检查项目费用管理' }
     }
   ]
 }

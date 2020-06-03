@@ -8,6 +8,11 @@
       <line-chart :chart-data="lineChartData" />
     </el-row>
 
+    <el-row>
+      <el-divider content-position="left">今日挂号信息</el-divider>
+      <regiter-number />
+    </el-row>
+
     <!-- <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
@@ -44,6 +49,7 @@
 // import GithubCorner from '@/components/GithubCorner'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
+import RegiterNumber from './components/RegisterNumberTable'
 // import RaddarChart from './components/RaddarChart'
 // import PieChart from './components/PieChart'
 // import BarChart from './components/BarChart'
@@ -75,7 +81,8 @@ export default {
   components: {
     // GithubCorner,
     PanelGroup,
-    LineChart
+    LineChart,
+    RegiterNumber
     // RaddarChart,
     // PieChart,
     // BarChart,
