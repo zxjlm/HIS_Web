@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-16 17:32:36
- * @LastEditTime: 2020-05-18 13:54:43
+ * @LastEditTime: 2020-06-06 16:44:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/query/fapaio_unused/index.vue
@@ -75,14 +75,13 @@
         prop="id"
         sortable="custom"
         align="center"
-        width="80"
         :class-name="getSortClass('员工编号')"
       >
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="日期" width="150px" align="center">
+      <el-table-column label="日期" align="center">
         <template slot-scope="{row}">
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d}') }}</span>
         </template>
@@ -93,17 +92,17 @@
           <el-tag>{{ row.type | typeFilter }}</el-tag>
         </template>
       </el-table-column>-->
-      <el-table-column label="员工姓名" width="110px" align="center">
+      <el-table-column label="员工姓名" align="center">
         <template slot-scope="{row}">
           <span>{{ row.author }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="性别" width="110px" align="center">
+      <el-table-column label="性别" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sex }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="日工作量" align="center" width="95">
+      <el-table-column label="日工作量(接待人次)" align="center">
         <template slot-scope="{row}">
           <span>{{ row.pageviews }}</span>
         </template>

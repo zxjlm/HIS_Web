@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-15 16:11:55
- * @LastEditTime: 2020-06-01 11:02:39
+ * @LastEditTime: 2020-06-06 16:39:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/fee/register_number/index.vue
@@ -72,15 +72,15 @@ export default {
         type: '专家(副主任医师)',
         charge: 22
       }, {
-        id: 1,
+        id: 2,
         type: '专家(主任医师)',
         charge: 35
       }, {
-        id: 2,
+        id: 3,
         type: '普通',
         charge: 12
       }, {
-        id: 3,
+        id: 4,
         type: '急诊',
         charge: 30
       }],

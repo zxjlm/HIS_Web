@@ -16,6 +16,7 @@ import statisticsRouter from './modules/statistics'
 import feeRouter from './modules/fee'
 import chargeRouter from './modules/charge'
 import refundRouter from './modules/refund'
+import dictRouter from './modules/dict'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -144,6 +145,7 @@ export const asyncRoutes = [
   // tableRouter,
   infoRouter,
   statisticsRouter,
+  dictRouter,
 
   // {
   //   path: '/tab',

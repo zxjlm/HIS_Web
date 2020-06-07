@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-18 14:30:49
- * @LastEditTime: 2020-05-18 14:53:38
+ * @LastEditTime: 2020-06-06 16:42:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/statistics/dept/conpoment/table.vue
@@ -21,11 +21,11 @@
       <el-divider />
 
       <el-table :data="tabledata" fit highlight-current-row show-summary sum-text="合计">
-        <el-table-column prop="id" label="编号" width="130px" align="center" />
-        <el-table-column prop="dept" label="科室名称" width="110px" align="center" />
-        <el-table-column prop="earning" label="月收益" width="110px" align="center" />
-        <el-table-column prop="patientNum" label="月接诊人次" width="110px" align="center" />
-        <el-table-column prop="peoNum" label="科室人数" width="110px" align="center" />
+        <el-table-column prop="id" label="编号" align="center" />
+        <el-table-column prop="dept" label="科室名称" align="center" />
+        <el-table-column prop="earning" label="月收益" align="center" />
+        <el-table-column prop="patientNum" label="月接诊人次" align="center" />
+        <el-table-column prop="peoNum" label="科室人数" align="center" />
       </el-table>
     </el-main>
   </el-container>

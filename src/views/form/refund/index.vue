@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-15 08:56:45
- * @LastEditTime: 2020-05-18 13:39:34
+ * @LastEditTime: 2020-06-06 16:37:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/refund/index.vue
@@ -84,7 +84,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogTableVisible = false">取消</el-button>
-        <el-button v-if="temp.status === 'running'" type="primary" @click="updateData()">退款</el-button>
+        <el-button v-if="temp.status === '进行中'" type="primary" @click="updateData()">退款</el-button>
       </div>
     </el-dialog>
   </div>

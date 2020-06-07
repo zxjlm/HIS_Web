@@ -56,7 +56,7 @@
             </div>
           </el-form-item>
 
-          <el-button :loading="loading" type="primary" style="width:40%;margin-top:30px;margin-left:30%" @click.native.prevent="handleLogin">登录</el-button>
+          <el-button :loading="loading" type="primary" style="width:40%;margin-top:30px;margin-left:30%" @click="handleLogin">登录</el-button>
 
           <!-- <div style="position:relative">
             <div class="tips">
@@ -89,6 +89,7 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
+// import request from '@/utils/myrequest'
 
 export default {
   name: 'Login',
@@ -169,6 +170,20 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          // this.loading = true
+          // request({
+          //   method: 'post',
+          //   url: '/api/v1.0/login',
+          //   data: this.loginForm
+          // })
+          //   .then((response) => {
+          //     console.log(response)
+          //     this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+          //     this.loading = false
+          //   })
+          //   .catch(function(error) {
+          //     console.log(error)
+          //   })
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
@@ -191,6 +206,10 @@ export default {
         }
         return acc
       }, {})
+    },
+    handletest() {
+      alert('jump')
+      this.$router.push({ path: '/' })
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {
@@ -211,6 +230,7 @@ export default {
     //   }
     // }
   }
+
 }
 </script>
 
