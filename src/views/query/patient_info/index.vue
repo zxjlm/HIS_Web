@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-14 19:46:56
- * @LastEditTime: 2020-05-18 13:53:14
+ * @LastEditTime: 2020-06-08 10:09:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/query/index.vue
@@ -82,7 +82,7 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="注册日期" width="150px" align="center">
+      <el-table-column label="注册日期" align="center">
         <template slot-scope="{row}">
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
@@ -93,27 +93,27 @@
           <el-tag>{{ row.type | typeFilter }}</el-tag>
         </template>
       </el-table-column>-->
-      <el-table-column label="患者姓名" width="110px" align="center">
+      <el-table-column label="患者姓名" align="center">
         <template slot-scope="{row}">
           <span>{{ row.author }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="性别" width="110px" align="center">
+      <el-table-column label="性别" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sex }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="就诊次数" align="center" width="95">
+      <el-table-column label="就诊次数" align="center">
         <template slot-scope="{row}">
           <span>{{ row.pageviews }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="总花费(元)" class-name="status-col" width="100">
+      <el-table-column label="总花费(元)" class-name="status-col">
         <template slot-scope="{row}">
           <span>{{ row.use_money }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">查看</el-button>
           <!-- <el-button

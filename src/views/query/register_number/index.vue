@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-14 19:46:56
- * @LastEditTime: 2020-05-18 13:51:48
+ * @LastEditTime: 2020-06-08 10:05:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue-element-admin/src/views/form/query/index.vue
@@ -82,7 +82,7 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="挂号日期" width="150px" align="center">
+      <el-table-column label="挂号日期" align="center">
         <template slot-scope="{row}">
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
@@ -93,17 +93,17 @@
           <el-tag>{{ row.type | typeFilter }}</el-tag>
         </template>
       </el-table-column>-->
-      <el-table-column label="患者姓名" width="110px" align="center">
+      <el-table-column label="患者姓名" align="center">
         <template slot-scope="{row}">
           <span>{{ row.author }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="科室" width="110px" align="center">
+      <el-table-column label="科室" align="center">
         <template slot-scope="{row}">
           <el-tag :type="row.type|typeFilter">{{ row.type }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="实际收费" align="center" width="95">
+      <el-table-column label="实际收费" align="center">
         <template slot-scope="{row}">
           <span
             v-if="row.pageviews"
@@ -113,12 +113,12 @@
           <span v-else>0</span>
         </template>
       </el-table-column>
-      <el-table-column label="状态" class-name="status-col" width="100">
+      <el-table-column label="状态" class-name="status-col">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusFilter">{{ row.status }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">查看</el-button>
           <!-- <el-button
